@@ -40,9 +40,6 @@ def convert_timestamp(timestamp):
 
 # Function to process a single post
 def process_post(post):
-    if post.score < vote_threshold:
-        return None
-    
     post.comments.replace_more(limit=0)  # Fetch all comments
     if len(post.comments) > 0:
         top_comment = post.comments[1]  # Get the topmost comment
