@@ -21,4 +21,4 @@ print(df.groupby(df.month).verdict.value_counts(normalize=True))
 df['year'] = df['date'].str.split('-').str[0]
 
 
-print(df.groupby(df.year).verdict.value_counts(normalize=True))
+print(df.groupby(df.year).verdict.value_counts(normalize=False))
