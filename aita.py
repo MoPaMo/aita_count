@@ -45,7 +45,7 @@ def process_post(post):
     
     post.comments.replace_more(limit=0)  # Fetch all comments
     if len(post.comments) > 0:
-        top_comment = post.comments[0]  # Get the topmost comment
+        top_comment = post.comments[1]  # Get the topmost comment
         verdict = get_verdict_from_comment(top_comment.body)
         if verdict is not None:
             date_time = convert_timestamp(post.created).split()
