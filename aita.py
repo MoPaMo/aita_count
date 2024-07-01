@@ -43,7 +43,7 @@ def process_post(post):
     if len(post.comments) > 0:
         verdict = "N/A"
         top_comment_num = 1
-        while verdict is "N/A":  # Keep trying to determine the verdict until it is determined
+        while verdict == "N/A":  # Keep trying to determine the verdict until it is determined
             top_comment = post.comments[top_comment_num]  # Get the topmost comment
             verdict = get_verdict_from_comment(top_comment.body)
             top_comment_num = top_comment_num + 1
