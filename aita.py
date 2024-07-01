@@ -17,7 +17,7 @@ reddit = praw.Reddit(
 
 # Define the subreddit and threshold
 subreddit_name = 'AmItheAsshole'
-
+filename= 'aita_results.csv'
 # Function to determine the verdict from the comment
 def get_verdict_from_comment(comment_body):
     comment_body = comment_body.lower()
@@ -67,18 +67,18 @@ posts = list(subreddit.top(time_filter='year', limit=1000))  # Adjust the time_f
 print(f"Number of posts retrieved: {len(posts)}")  # Debugging statement
 
 # Open the CSV file in write mode initially to write the header
-with open('aita_results.csv', mode='w', newline='') as file:
+with open(filename, mode='w', newline='') as file:
     writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date', 'time'])
     writer.writeheader()
 
 # Use ThreadPoolExecutor to process posts concurrently
 with ThreadPoolExecutor(max_workers=10) as executor:
     futures = [executor.submit(process_post, post) for post in posts]
-    with open('aita_results.csv', mode='a', newline='') as file:
+    with open(filename, mode='a', newline='') as file:
         writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date', 'time'])
         for future in as_completed(futures):
             result = future.result()
             if result:
                 writer.writerow(result)
 
-print(f"Results have been written to aita_results.csv")
+print(f"Results have been written to", filename)
