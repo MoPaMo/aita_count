@@ -1,3 +1,3 @@
 # Reddit AITA Historical Analysis Bot
 
-This Python script analyzes the historical data of the r/AmItheAsshole (AITA) subreddit. It determines the overall verdict for each post and provides general statistics based on those verdicts.
+AITA Analyzer is an application designed to gather and analyze data from the subreddit r/AmItheAsshole. The app identifies the topmost comment of each post above a certain threshold of votes and determines whether the comment deems the original poster (OP) to be the asshole or not.
