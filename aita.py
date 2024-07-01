@@ -17,7 +17,7 @@ reddit = praw.Reddit(
 
 # Define the subreddit and threshold
 subreddit_name = 'AmItheAsshole'
-filename= 'aita_results.csv'
+filename= 'aita_results_all.csv'
 # Function to determine the verdict from the comment
 def get_verdict_from_comment(comment_body):
     comment_body = comment_body.lower()
@@ -62,7 +62,7 @@ def process_post(post):
 
 # Fetch top posts from the subreddit for the past year
 subreddit = reddit.subreddit(subreddit_name)
-posts = list(subreddit.top(time_filter='year', limit=1000))  # Adjust the time_filter as needed
+posts = list(subreddit.top(time_filter='all', limit=1000))  # Adjust the time_filter as needed
 
 print(f"Number of posts retrieved: {len(posts)}")  # Debugging statement
 
