@@ -1,94 +1,64 @@
 import praw
-import re
 import csv
-from collections import Counter
-from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
 
 # Load environment variables from .env file
 load_dotenv()
 
-# Initialize Reddit API client
+# Set up Reddit API credentials
 reddit = praw.Reddit(
-    client_id=os.getenv("CLIENT_ID"),
-    client_secret=os.getenv("CLIENT_SECRET"),
-    user_agent=os.getenv("USER_AGENT")
+    client_id=os.getenv('CLIENT_ID'),
+    client_secret=os.getenv('CLIENT_SECRET'),
+    user_agent=os.getenv('USER_AGENT')
 )
 
-def analyze_aita_history(subreddit_name, days_to_analyze=30):
-    subreddit = reddit.subreddit(subreddit_name)
-    end_date = datetime.utcnow()
-    start_date = end_date - timedelta(days=days_to_analyze)
-    
-    post_verdicts = []
-    overall_stats = Counter()
+# Define the subreddit and threshold
+subreddit_name = 'AmItheAsshole'
+vote_threshold = 500  # Define your vote threshold here
 
-    for post in subreddit.new(limit=None):
-        if post.created_utc < start_date.timestamp():
-            break
+# Function to determine the verdict from the comment
+def get_verdict_from_comment(comment_body):
+    comment_body = comment_body.lower()
+    if 'yta' in comment_body:  # 'YTA' stands for "You're The Asshole"
+        return 'Asshole'
+    elif 'nta' in comment_body:  # 'NTA' stands for "Not The Asshole"
+        return 'Not the Asshole'
+    elif 'esh' in comment_body:  # 'ESH' stands for "Everyone Sucks Here"
+        return 'Everyone Sucks Here'
+    elif 'nah' in comment_body:  # 'NAH' stands for "No Assholes Here"
+        return 'No Assholes Here'
+    else:
+        return None  # In case the comment does not clearly state any known verdict
 
-        verdict = get_post_verdict(post)
-        post_verdicts.append((post.title, verdict))
-        overall_stats[verdict] += 1
+# Fetch posts from the subreddit
+subreddit = reddit.subreddit(subreddit_name)
+posts = subreddit.hot(limit=100)  # You can adjust the limit as needed
 
-    return post_verdicts, overall_stats
+# Store results in a list
+results = []
 
-def get_post_verdict(post):
-    post.comments.replace_more(limit=0)
-    top_comments = sorted(post.comments, key=lambda x: x.score, reverse=True)[:10]
-    
-    vote_counter = Counter()
-    for comment in top_comments:
-        vote = extract_vote(comment.body)
-        if vote:
-            vote_counter[vote] += 1
-    
-    if not vote_counter:
-        return "No Verdict"
-    
-    return vote_counter.most_common(1)[0][0]
+for post in posts:
+    if post.score >= vote_threshold:
+        post.comments.replace_more(limit=0)  # Fetch all comments
+        if len(post.comments) > 0:
+            top_comment = post.comments[0]  # Get the topmost comment
 
-def extract_vote(comment_body):
-    vote_patterns = {
-        'YTA': r'\bYTA\b',
-        'NTA': r'\bNTA\b',
-        'ESH': r'\bESH\b',
-        'NAH': r'\bNAH\b',
-        'INFO': r'\bINFO\b'
-    }
+            verdict = get_verdict_from_comment(top_comment.body)
+            if verdict is not None:
+                results.append({
+                    'post_id': post.id,
+                    'title': post.title,
+                    'score': post.score,
+                    'top_comment_id': top_comment.id,
+                    'verdict': verdict
+                })
 
-    for vote, pattern in vote_patterns.items():
-        if re.search(pattern, comment_body, re.IGNORECASE):
-            return vote
-    return None
+# Write results to a CSV file
+with open('aita_results.csv', mode='w', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=['post_id', 'title', 'score', 'top_comment_id', 'verdict'])
+    writer.writeheader()
+    for result in results:
+        writer.writerow(result)
 
-def save_to_csv(post_verdicts, overall_stats, filename="aita_analysis.csv"):
-    with open(filename, mode='w', newline='', encoding='utf-8') as file:
-        writer = csv.writer(file)
-        writer.writerow(["Post Title", "Verdict"])
-        for title, verdict in post_verdicts:
-            writer.writerow([title, verdict])
-        
-        writer.writerow([])
-        writer.writerow(["Verdict", "Count", "Percentage"])
-        total_posts = sum(overall_stats.values())
-        for verdict, count in overall_stats.items():
-            percentage = (count / total_posts) * 100
-            writer.writerow([verdict, count, f"{percentage:.2f}%"])
-
-if __name__ == "__main__":
-    post_verdicts, overall_stats = analyze_aita_history("AmItheAsshole", days_to_analyze=30)
-    
-    print("Individual Post Verdicts:")
-    for title, verdict in post_verdicts:
-        print(f"Post: {title[:50]}... | Verdict: {verdict}")
-    
-    print("\nOverall Statistics:")
-    total_posts = sum(overall_stats.values())
-    for verdict, count in overall_stats.items():
-        percentage = (count / total_posts) * 100
-        print(f"{verdict}: {count} ({percentage:.2f}%)")
-    
-    # Save results to CSV file
-    save_to_csv(post_verdicts, overall_stats)
+print(f"Results have been written to aita_results.csv")
