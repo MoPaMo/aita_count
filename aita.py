@@ -37,9 +37,11 @@ def convert_timestamp(timestamp):
     dt = datetime.utcfromtimestamp(timestamp)
     return dt.strftime('%Y-%m-%d %H:%M:%S')
 
-# Fetch posts from the subreddit
+# Fetch top posts from the subreddit for the past year
 subreddit = reddit.subreddit(subreddit_name)
-posts = subreddit.search('score:>1000', limit=1000)  # You can adjust the limit as needed
+posts = list(subreddit.top(time_filter='year', limit=1000))  # Adjust the time_filter as needed
+
+print(f"Number of posts retrieved: {len(posts)}")  # Debugging statement
 
 # Open the CSV file in write mode initially to write the header
 with open('aita_results.csv', mode='w', newline='') as file:
@@ -52,6 +54,7 @@ with open('aita_results.csv', mode='a', newline='') as file:
     
     for post in posts:
         if post.score >= vote_threshold:
+            print(f"Processing post with ID: {post.id} and score: {post.score}")  # Debugging statement
             post.comments.replace_more(limit=0)  # Fetch all comments
             if len(post.comments) > 0:
                 top_comment = post.comments[0]  # Get the topmost comment
