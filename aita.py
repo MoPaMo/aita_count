@@ -18,6 +18,7 @@ reddit = praw.Reddit(
 # Define the subreddit and threshold
 subreddit_name = 'AmItheAsshole'
 filename= 'aita_results_all.csv'
+
 # Function to determine the verdict from the comment
 def get_verdict_from_comment(comment_body):
     comment_body = comment_body.lower()
@@ -42,22 +43,23 @@ def process_post(post):
     post.comments.replace_more(limit=0)  # Fetch all comments
     if len(post.comments) > 0:
         verdict = "N/A"
-        top_comment_num = 1
-        while verdict == "N/A":  # Keep trying to determine the verdict until it is determined
-            if len(post.comments) <= top_comment_num:
-                break
+        top_comment = None
+        top_comment_num = 0  # Start from the topmost comment
+        while verdict == "N/A" and top_comment_num < len(post.comments):  # Keep trying to determine the verdict until it is determined
             top_comment = post.comments[top_comment_num]  # Get the topmost comment
             verdict = get_verdict_from_comment(top_comment.body)
-            top_comment_num = top_comment_num + 1
-        date_time = convert_timestamp(post.created).split()
-        return {
-            'post_id': post.id,
-            'score': post.score,
-            'top_comment_id': top_comment.id,
-            'verdict': verdict,
-            'date': date_time[0],  # Date part
-            'time': date_time[1]  # Time part
-        }
+            top_comment_num += 1
+        
+        if top_comment:  # Check if top_comment is not None
+            date_time = convert_timestamp(post.created).split()
+            return {
+                'post_id': post.id,
+                'score': post.score,
+                'top_comment_id': top_comment.id,
+                'verdict': verdict,
+                'date': date_time[0],  # Date part
+                'time': date_time[1]  # Time part
+            }
     return None
 
 # Fetch top posts from the subreddit for the past year
@@ -81,4 +83,4 @@ with ThreadPoolExecutor(max_workers=10) as executor:
             if result:
                 writer.writerow(result)
 
-print(f"Results have been written to", filename)
+print(f"Results have been written to {filename}")
