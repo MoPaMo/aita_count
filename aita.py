@@ -35,30 +35,29 @@ def get_verdict_from_comment(comment_body):
 subreddit = reddit.subreddit(subreddit_name)
 posts = subreddit.hot(limit=100)  # You can adjust the limit as needed
 
-# Store results in a list
-results = []
-
-for post in posts:
-    if post.score >= vote_threshold:
-        post.comments.replace_more(limit=0)  # Fetch all comments
-        if len(post.comments) > 0:
-            top_comment = post.comments[0]  # Get the topmost comment
-
-            verdict = get_verdict_from_comment(top_comment.body)
-            if verdict is not None:
-                results.append({
-                    'post_id': post.id,
-                    'score': post.score,
-                    'top_comment_id': top_comment.id,
-                    'verdict': verdict,
-                    'date': post.created
-                })
-
-# Write results to a CSV file
+# Open the CSV file in write mode initially to write the header
 with open('aita_results.csv', mode='w', newline='') as file:
-    writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict'])
+    writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date'])
     writer.writeheader()
-    for result in results:
-        writer.writerow(result)
+
+# Open the CSV file in append mode to write each row
+with open('aita_results.csv', mode='a', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date'])
+    
+    for post in posts:
+        if post.score >= vote_threshold:
+            post.comments.replace_more(limit=0)  # Fetch all comments
+            if len(post.comments) > 0:
+                top_comment = post.comments[0]  # Get the topmost comment
+
+                verdict = get_verdict_from_comment(top_comment.body)
+                if verdict is not None:
+                    writer.writerow({
+                        'post_id': post.id,
+                        'score': post.score,
+                        'top_comment_id': top_comment.id,
+                        'verdict': verdict,
+                        'date': post.created
+                    })
 
 print(f"Results have been written to aita_results.csv")
