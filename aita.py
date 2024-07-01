@@ -21,6 +21,7 @@ vote_threshold = 1000  # Define your vote threshold here
 # Function to determine the verdict from the comment
 def get_verdict_from_comment(comment_body):
     comment_body = comment_body.lower()
+    print(comment_body)
     if 'yta' in comment_body:  # 'YTA' stands for "You're The Asshole"
         return 'YTA'
     elif 'nta' in comment_body:  # 'NTA' stands for "Not The Asshole"
@@ -57,7 +58,7 @@ with open('aita_results.csv', mode='a', newline='') as file:
             print(f"Processing post with ID: {post.id} and score: {post.score}")  # Debugging statement
             post.comments.replace_more(limit=0)  # Fetch all comments
             if len(post.comments) > 0:
-                top_comment = post.comments[0]  # Get the topmost comment
+                top_comment = post.comments[1]  # Get the topmost comment
 
                 verdict = get_verdict_from_comment(top_comment.body)
                 if verdict is not None:
