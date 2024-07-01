@@ -57,7 +57,8 @@ with open('aita_results.csv', mode='a', newline='') as file:
                         'score': post.score,
                         'top_comment_id': top_comment.id,
                         'verdict': verdict,
-                        'date': post.created
+                        'date': post.created.date(),
+                        'time': post.created.time()
                     })
 
 print(f"Results have been written to aita_results.csv")
