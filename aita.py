@@ -31,7 +31,7 @@ def get_verdict_from_comment(comment_body):
     elif 'nah' in comment_body:  # 'NAH' stands for "No Assholes Here"
         return 'NAH'
     else:
-        return None  # In case the comment does not clearly state any known verdict
+        return 'N/A'  # In case the comment does not clearly state any known verdict
 
 # Function to convert Unix timestamp to a readable date and time format
 def convert_timestamp(timestamp):
