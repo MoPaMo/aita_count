@@ -33,7 +33,7 @@ def get_verdict_from_comment(comment_body):
 
 # Fetch posts from the subreddit
 subreddit = reddit.subreddit(subreddit_name)
-posts = subreddit.hot(limit=100)  # You can adjust the limit as needed
+posts = subreddit.search('score:>1000', limit=1000)  # You can adjust the limit as needed
 
 # Open the CSV file in write mode initially to write the header
 with open('aita_results.csv', mode='w', newline='') as file:
