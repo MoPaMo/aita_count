@@ -2,7 +2,8 @@ import praw
 import csv
 import os
 from dotenv import load_dotenv
-from datetime import datetime  # Import the datetime module
+from datetime import datetime
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Load environment variables from .env file
 load_dotenv()
@@ -21,7 +22,6 @@ vote_threshold = 1000  # Define your vote threshold here
 # Function to determine the verdict from the comment
 def get_verdict_from_comment(comment_body):
     comment_body = comment_body.lower()
-    print(comment_body)
     if 'yta' in comment_body:  # 'YTA' stands for "You're The Asshole"
         return 'YTA'
     elif 'nta' in comment_body:  # 'NTA' stands for "Not The Asshole"
@@ -38,6 +38,27 @@ def convert_timestamp(timestamp):
     dt = datetime.utcfromtimestamp(timestamp)
     return dt.strftime('%Y-%m-%d %H:%M:%S')
 
+# Function to process a single post
+def process_post(post):
+    if post.score < vote_threshold:
+        return None
+    
+    post.comments.replace_more(limit=0)  # Fetch all comments
+    if len(post.comments) > 0:
+        top_comment = post.comments[0]  # Get the topmost comment
+        verdict = get_verdict_from_comment(top_comment.body)
+        if verdict is not None:
+            date_time = convert_timestamp(post.created).split()
+            return {
+                'post_id': post.id,
+                'score': post.score,
+                'top_comment_id': top_comment.id,
+                'verdict': verdict,
+                'date': date_time[0],  # Date part
+                'time': date_time[1]  # Time part
+            }
+    return None
+
 # Fetch top posts from the subreddit for the past year
 subreddit = reddit.subreddit(subreddit_name)
 posts = list(subreddit.top(time_filter='year', limit=1000))  # Adjust the time_filter as needed
@@ -49,27 +70,14 @@ with open('aita_results.csv', mode='w', newline='') as file:
     writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date', 'time'])
     writer.writeheader()
 
-# Open the CSV file in append mode to write each row
-with open('aita_results.csv', mode='a', newline='') as file:
-    writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date', 'time'])
-    
-    for post in posts:
-        if post.score >= vote_threshold:
-            print(f"Processing post with ID: {post.id} and score: {post.score}")  # Debugging statement
-            post.comments.replace_more(limit=0)  # Fetch all comments
-            if len(post.comments) > 0:
-                top_comment = post.comments[1]  # Get the topmost comment
-
-                verdict = get_verdict_from_comment(top_comment.body)
-                if verdict is not None:
-                    date_time = convert_timestamp(post.created).split()
-                    writer.writerow({
-                        'post_id': post.id,
-                        'score': post.score,
-                        'top_comment_id': top_comment.id,
-                        'verdict': verdict,
-                        'date': date_time[0],  # Date part
-                        'time': date_time[1]  # Time part
-                    })
+# Use ThreadPoolExecutor to process posts concurrently
+with ThreadPoolExecutor(max_workers=10) as executor:
+    futures = [executor.submit(process_post, post) for post in posts]
+    with open('aita_results.csv', mode='a', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict', 'date', 'time'])
+        for future in as_completed(futures):
+            result = future.result()
+            if result:
+                writer.writerow(result)
 
 print(f"Results have been written to aita_results.csv")
