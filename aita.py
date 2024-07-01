@@ -1,13 +1,19 @@
 import praw
 import re
+import csv
 from collections import Counter
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Initialize Reddit API client
 reddit = praw.Reddit(
-    client_id="YOUR_CLIENT_ID",
-    client_secret="YOUR_CLIENT_SECRET",
-    user_agent="AITA_Historical_Analysis_Bot v1.0 by YourUsername"
+    client_id=os.getenv("CLIENT_ID"),
+    client_secret=os.getenv("CLIENT_SECRET"),
+    user_agent=os.getenv("USER_AGENT")
 )
 
 def analyze_aita_history(subreddit_name, days_to_analyze=30):
@@ -57,6 +63,20 @@ def extract_vote(comment_body):
             return vote
     return None
 
+def save_to_csv(post_verdicts, overall_stats, filename="aita_analysis.csv"):
+    with open(filename, mode='w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(["Post Title", "Verdict"])
+        for title, verdict in post_verdicts:
+            writer.writerow([title, verdict])
+        
+        writer.writerow([])
+        writer.writerow(["Verdict", "Count", "Percentage"])
+        total_posts = sum(overall_stats.values())
+        for verdict, count in overall_stats.items():
+            percentage = (count / total_posts) * 100
+            writer.writerow([verdict, count, f"{percentage:.2f}%"])
+
 if __name__ == "__main__":
     post_verdicts, overall_stats = analyze_aita_history("AmItheAsshole", days_to_analyze=30)
     
@@ -69,3 +89,6 @@ if __name__ == "__main__":
     for verdict, count in overall_stats.items():
         percentage = (count / total_posts) * 100
         print(f"{verdict}: {count} ({percentage:.2f}%)")
+    
+    # Save results to CSV file
+    save_to_csv(post_verdicts, overall_stats)
