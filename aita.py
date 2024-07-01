@@ -44,11 +44,11 @@ def process_post(post):
         verdict = "N/A"
         top_comment_num = 1
         while verdict == "N/A":  # Keep trying to determine the verdict until it is determined
+            if len(post.comments) <= top_comment_num:
+                break
             top_comment = post.comments[top_comment_num]  # Get the topmost comment
             verdict = get_verdict_from_comment(top_comment.body)
             top_comment_num = top_comment_num + 1
-            if len(post.comments) <= top_comment_num:
-                break
         date_time = convert_timestamp(post.created).split()
         return {
             'post_id': post.id,
