@@ -21,13 +21,13 @@ vote_threshold = 500  # Define your vote threshold here
 def get_verdict_from_comment(comment_body):
     comment_body = comment_body.lower()
     if 'yta' in comment_body:  # 'YTA' stands for "You're The Asshole"
-        return 'Asshole'
+        return 'YTA'
     elif 'nta' in comment_body:  # 'NTA' stands for "Not The Asshole"
-        return 'Not the Asshole'
+        return 'NTA'
     elif 'esh' in comment_body:  # 'ESH' stands for "Everyone Sucks Here"
-        return 'Everyone Sucks Here'
+        return 'ESH'
     elif 'nah' in comment_body:  # 'NAH' stands for "No Assholes Here"
-        return 'No Assholes Here'
+        return 'NAH'
     else:
         return None  # In case the comment does not clearly state any known verdict
 
