@@ -48,15 +48,15 @@ for post in posts:
             if verdict is not None:
                 results.append({
                     'post_id': post.id,
-                    'title': post.title,
                     'score': post.score,
                     'top_comment_id': top_comment.id,
-                    'verdict': verdict
+                    'verdict': verdict,
+                    'date': post.created
                 })
 
 # Write results to a CSV file
 with open('aita_results.csv', mode='w', newline='') as file:
-    writer = csv.DictWriter(file, fieldnames=['post_id', 'title', 'score', 'top_comment_id', 'verdict'])
+    writer = csv.DictWriter(file, fieldnames=['post_id', 'score', 'top_comment_id', 'verdict'])
     writer.writeheader()
     for result in results:
         writer.writerow(result)
