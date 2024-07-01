@@ -17,7 +17,6 @@ reddit = praw.Reddit(
 
 # Define the subreddit and threshold
 subreddit_name = 'AmItheAsshole'
-vote_threshold = 1000  # Define your vote threshold here
 
 # Function to determine the verdict from the comment
 def get_verdict_from_comment(comment_body):
