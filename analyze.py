@@ -1,5 +1,5 @@
 import pandas as pd
-df = pd.read_csv('aita_results.csv')
+df = pd.read_csv('aita_results_all.csv')
 print(df.head())
 print(f"Number of rows in aita_results.csv: {len(df)}")
 
@@ -17,3 +17,8 @@ df['month'] = df['date'].str.split('-').str[1]
 
 
 print(df.groupby(df.month).verdict.value_counts(normalize=True))
+
+df['year'] = df['date'].str.split('-').str[0]
+
+
+print(df.groupby(df.year).verdict.value_counts(normalize=True))
