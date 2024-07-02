@@ -8,6 +8,8 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <style>
       #tagcontainer .tag {
         position: absolute;
@@ -26,6 +28,13 @@
       #tagcontainer .tag:nth-child(1) {
         transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
       }
+
+  #verdictChart {
+    width: 70% !important;  /* Adjust the percentage as needed */
+    max-width: 600px;       /* Set a maximum width */
+    max-height: 400px;         /* Adjust the height as needed */
+  }
+
     </style>
   </head>
   <body>
@@ -116,8 +125,100 @@
             </div>
           </nav>
         </h2>
-        <h4>Ditribution of verdicts in top votes from the last 5 years</h4>
+        <h4>Ditribution of verdicts in top comments from the last 5 years</h4>
         <h4></h4>
       </section>
+
+
+  <section class="section is-medium has-text-centered">
+    <h1 class="title">2. Things have changed</h1>
+    <canvas id="verdictChart" class="chart  mx-auto"></canvas>
+    <br>
+    <h4>Ditribution of verdicts in top comments 2019-2023</h4>
+
+  </section>
+
+  <!-- JavaScript for Chart.js -->
+  <script>
+    const ctx = document.getElementById('verdictChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['2019', '2020', '2021', '2022', '2023'],
+        datasets: [
+          {
+            label: 'NTA',
+            data: [0.651934, 0.920128, 0.963415, 0.982684, 0.958333],
+            backgroundColor: 'hsl(141, 71%, 48%)',
+            borderColor: 'hsl(141, 53%, 31%)',
+            borderWidth: 1,
+          },
+          {
+            label: 'YTA',
+            data: [0.182320, 0.038339, 0.018293, 0.012987, 0.041667],
+            backgroundColor: 'hsl(348, 100%, 61%)',
+            borderColor: 'hsl(348, 86%, 43%)',
+            borderWidth: 1,
+          },
+          {
+            label: 'ESH',
+            data: [0.082873, 0.028754, 0.012195, 0.004329, 0.000000],
+            backgroundColor: 'hsl(48, 100%, 67%)',
+            borderColor: 'hsl(48, 100%, 29%)',
+            borderWidth: 1,
+          },
+          {
+            label: 'NAH',
+            data: [0.082873, 0.012780, 0.006098, 0.000000, 0.000000],
+            backgroundColor: 'hsl(204, 86%, 53%)',
+            borderColor: 'hsl(204, 71%, 39%)',
+            borderWidth: 1,
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            display: true,
+            position: 'top',
+          },
+          tooltip: {
+            callbacks: {
+              label: function(context) {
+                let label = context.dataset.label || '';
+                if (label) {
+                  label += ': ';
+                }
+                if (context.parsed.y !== null) {
+                  label += (context.parsed.y * 100).toFixed(1) + '%';
+                }
+                return label;
+              }
+            }
+          }
+        },
+        scales: {
+          x: {
+            display:false,
+            stacked: true,
+          },
+          y: {
+            display:false,
+            stacked: true,
+            beginAtZero: true,
+            ticks: {
+              callback: function(value) {
+                return value * 100 + '%';
+              }
+            }
+          }
+        }
+      },elements: {
+      // to make background transparent
+      backgroundColor: 'transparent'
+    },
+    });
+  </script>
   </body>
 </html>
