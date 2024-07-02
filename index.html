@@ -29,7 +29,7 @@
         transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
       }
 
-  #verdictChart, #verdictChart2 {
+  #verdictChart {
     width: 70% !important;  /* Adjust the percentage as needed */
     max-width: 600px;       /* Set a maximum width */
     max-height: 400px;         /* Adjust the height as needed */
@@ -141,9 +141,24 @@
 
   <section class="section is-medium has-text-centered">
     <h1 class="title">Seems like people are grumpy in November</h1>
-    <canvas id="verdictChart2" class="chart  mx-auto"></canvas>
+    
+    
+    <div class="columns">
+        <div class="column">
+    <canvas id="verdictChart2" class="chart"></canvas>
     <br>
     <h4>Ditribution of verdicts in top comments 2019-2023</h4>
+    </div>
+
+<div class="column"><canvas id="verdictHourlyChart" class="chart"></canvas>
+    <br>
+    <h4>Ditribution of verdicts in top comments 2019-2023</h4></div>
+</div>
+
+  </section>
+  <section class="section is-medium has-text-centered">
+    <h1 class="title">Seems like people are grumpy in November</h1>
+    
 
   </section>
   <!-- JavaScript for Chart.js -->
@@ -315,6 +330,90 @@
       backgroundColor: 'transparent'
     },
   });
+
+
+  const ctx3 = document.getElementById('verdictHourlyChart').getContext('2d');
+new Chart(ctx3, {
+  type: 'bar',
+  data: {
+    labels: [
+      '00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 
+      '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', 
+      '20', '21', '22', '23'
+    ],
+    datasets: [
+      {
+        label: 'ESH',
+        data: [0.100000, 0.000000, 0.058824, 0.000000, 0.000000, 0.000000, 0.000000, 0.047619, 0.000000, 0.047619, 0.029412, 0.016393, 0.023810, 0.013699, 0.038961, 0.055556, 0.014493, 0.023810, 0.000000, 0.035714, 0.000000, 0.025000, 0.055556, 0.062500],
+        backgroundColor: 'hsl(48, 100%, 67%)',
+        borderColor: 'hsl(48, 100%, 29%)',
+        borderWidth: 1,
+      },
+      {
+        label: 'NAH',
+        data: [0.000000, 0.071429, 0.000000, 0.000000, 0.000000, 0.000000, 0.055556, 0.047619, 0.000000, 0.000000, 0.000000, 0.032787, 0.035714, 0.054795, 0.051948, 0.000000, 0.000000, 0.011905, 0.000000, 0.035714, 0.000000, 0.000000, 0.000000, 0.031250],
+        backgroundColor: 'hsl(204, 86%, 53%)',
+        borderColor: 'hsl(204, 71%, 39%)',
+        borderWidth: 1,
+      },
+      {
+        label: 'NTA',
+        data: [0.750000, 0.857143, 0.941176, 1.000000, 0.933333, 0.941176, 0.888889, 0.809524, 1.000000, 0.904762, 0.882353, 0.885246, 0.869048, 0.876712, 0.844156, 0.888889, 0.956522, 0.892857, 0.947368, 0.910714, 0.897959, 0.925000, 0.925926, 0.906250],
+        backgroundColor: 'hsl(141, 71%, 48%)',
+        borderColor: 'hsl(141, 53%, 31%)',
+        borderWidth: 1,
+      },
+      {
+        label: 'YTA',
+        data: [0.150000, 0.071429, 0.000000, 0.000000, 0.066667, 0.058824, 0.055556, 0.095238, 0.000000, 0.047619, 0.088235, 0.065574, 0.071429, 0.054795, 0.064935, 0.055556, 0.028986, 0.071429, 0.052632, 0.017857, 0.102041, 0.050000, 0.018519, 0.000000],
+        backgroundColor: 'hsl(348, 100%, 61%)',
+        borderColor: 'hsl(348, 86%, 43%)',
+        borderWidth: 1,
+      },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'top',
+      },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            let label = context.dataset.label || '';
+            if (label) {
+              label += ': ';
+            }
+            if (context.parsed.y !== null) {
+              label += (context.parsed.y * 100).toFixed(1) + '%';
+            }
+            return label;
+          }
+        }
+      }
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+        beginAtZero: true,
+        ticks: {
+          callback: function(value) {
+            return value * 100 + '%';
+          }
+        }
+      }
+    }
+  },
+  elements: {
+    // to make background transparent
+    backgroundColor: 'transparent'
+  },
+});
   </script>
   </body>
 </html>
