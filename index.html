@@ -442,7 +442,24 @@
             },
         });
     </script>
-
+    <div class="container">
+    <article class="message is-warning " id="method">
+        <div class="message-header">
+          <p>Method</p>
+        </div>
+        <div class="message-body">
+            We Gathered the <strong>Top 1k</strong> Posts of all Time on <a href="https://www.reddit.com/r/amitheasshole/"
+            target="_blank">r/amitheasshole</a>. We then extracted the top comment from each post and looked for either   <span class="tags is-centered " style="display: inline;">
+                <span class="tag is-success" style="transform: rotate(8deg); margin-top: 1px">NTA</span>,
+                <span class="tag is-danger" style="transform: rotate(-1deg); margin-top: 20px">YTA</span>,
+                <span class="tag is-warning" style="transform: rotate(5deg); margin-top: -1px">ESH</span> or
+                <span class="tag is-info" style="transform: rotate(-10deg); margin-top: 4px">NAH</span>.
+            </span> If we didn't find one of these flags in the top comment, we scanned the next top comment in the post. We used <a href="https://github.com/mopamo/aita_count/aita.py">this script</a>.
+            You can see the the raw data we collected <a href="https://github.com/mopamo/aita_count/aita_results_all.csv">here</a>. We then calculated the percentage of each verdict and plotted the results with <a href="https://github.com/mopamo/aita_count/analyze.py">this script</a>.
+            <br>This means that the data in this website may not be 100% accurate, as it only considers 1. the top comment in each post and 2. the highest ranking posts.
+        </div>
+      </article></div>
+      <br>
     <footer class="footer">
         <div class="content columns">
             <p class="column">
