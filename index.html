@@ -29,7 +29,7 @@
         transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
       }
 
-  #verdictChart {
+  #verdictChart, #verdictChart2 {
     width: 70% !important;  /* Adjust the percentage as needed */
     max-width: 600px;       /* Set a maximum width */
     max-height: 400px;         /* Adjust the height as needed */
@@ -138,6 +138,14 @@
 
   </section>
 
+
+  <section class="section is-medium has-text-centered">
+    <h1 class="title">Seems like people are grumpy in November</h1>
+    <canvas id="verdictChart2" class="chart  mx-auto"></canvas>
+    <br>
+    <h4>Ditribution of verdicts in top comments 2019-2023</h4>
+
+  </section>
   <!-- JavaScript for Chart.js -->
   <script>
     const ctx = document.getElementById('verdictChart').getContext('2d');
@@ -219,6 +227,94 @@
       backgroundColor: 'transparent'
     },
     });
+
+
+    const ctx2 = document.getElementById('verdictChart2').getContext('2d');
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+      datasets: [
+        {
+          label: 'NTA',
+          data: [0.905405, 0.936170, 0.928571, 0.964286, 0.922222, 0.905263, 0.860294, 0.905983, 0.893617, 0.819672, 0.868852, 0.887640],
+          backgroundColor: 'hsl(141, 71%, 48%)',
+          borderColor: 'hsl(141, 53%, 31%)',
+          borderWidth: 1,
+        },
+        {
+          label: 'YTA',
+          data: [0.067568, 0.042553, 0.028571, 0.035714, 0.044444, 0.063158, 0.088235, 0.042735, 0.063830, 0.049180, 0.065574, 0.044944],
+          backgroundColor: 'hsl(348, 100%, 61%)',
+          borderColor: 'hsl(348, 86%, 43%)',
+          borderWidth: 1,
+        },
+        {
+          label: 'ESH',
+          data: [0.013514, 0.021277, 0.014286, 0.000000, 0.033333, 0.010526, 0.044118, 0.017094, 0.010638, 0.081967, 0.032787, 0.044944],
+          backgroundColor: 'hsl(48, 100%, 67%)',
+          borderColor: 'hsl(48, 100%, 29%)',
+          borderWidth: 1,
+        },
+        {
+          label: 'NAH',
+          data: [0.013514, 0.021277, 0.028571, 0.000000, 0.000000, 0.021053, 0.007353, 0.034188, 0.031915, 0.049180, 0.032787, 0.022472],
+          backgroundColor: 'hsl(204, 86%, 53%)',
+          borderColor: 'hsl(204, 71%, 39%)',
+          borderWidth: 1,
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'top',
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              let label = context.dataset.label || '';
+              if (label) {
+                label += ': ';
+              }
+              if (context.parsed.y !== null) {
+                label += (context.parsed.y * 100).toFixed(1) + '%';
+              }
+              return label;
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          stacked: true,
+          title: {
+            display: true,
+            text: 'Month'
+          }
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+          title: {
+            display: true,
+            text: 'Percentage'
+          },
+          ticks: {
+            callback: function(value) {
+              return value * 100 + '%';
+            }
+          }
+        }
+      }
+    },
+    elements: {
+      // to make background transparent
+      backgroundColor: 'transparent'
+    },
+  });
   </script>
   </body>
 </html>
