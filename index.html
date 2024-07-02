@@ -3,27 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Who's The Asshole</title>
+    <title>Who's The Asshole?</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
     />
+    <style>
+      .tag {
+        position: absolute;
+        transform-origin: bottom center;
+      }
+      .tag:nth-child(2) {
+        transform: translate(-50%, -50%) rotate(60deg) translate(0, -200px);
+      }
+      .tag:nth-child(3) {
+        transform: translate(-50%, -50%) rotate(22.5deg) translate(0, -200px);
+      }
+      .tag:nth-child(4) {
+        transform: translate(-50%, -50%) rotate(-22.5deg) translate(0, -200px);
+      }
+      .tag:nth-child(5) {
+        transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
+      }
+    </style>
   </head>
   <body>
     <section class="hero is-fullheight">
       <div class="hero-body">
-        <p class="title is-size-1">Who's The Asshole?</p>
-        <br />
-        <p class="subtitle">on <a class="has-text-black">r/amitheasshole</a></p>
+        <div class="container has-text-centered">
+          <p class="title is-size-1">Who's The Asshole?</p>
+          <br />
+          <p class="subtitle">
+            on
+            <a
+              class="has-text-black"
+              href="https://www.reddit.com/r/amitheasshole/"
+              target="_blank"
+              >r/amitheasshole</a
+            >
+          </p>
+        </div>
       </div>
     </section>
 
-    <section class="messages">
-      <div class="message">YTA!</div>
-      <div class="message">NTA.</div>
-      <div class="message">NAH...</div>
-      <div class="message">ESH...</div>
-    </section>
+    <div class="tag is-success is-large" style="top: 50%; left: 50%">NTA</div>
+    <div class="tag is-danger is-large" style="top: 50%; left: 50%">YTA</div>
+    <div class="tag is-warning is-large" style="top: 50%; left: 50%">ESH</div>
+    <div class="tag is-info is-large" style="top: 50%; left: 50%">NAH</div>
 
     <section class="placeholder">
       <h2>Placeholder</h2>
