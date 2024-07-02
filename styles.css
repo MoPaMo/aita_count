@@ -1,0 +1,55 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  font-size: 3em;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.messages {
+  height: 400vh; /* Adjust this height as needed */
+  background-color: #f4f4f4;
+  position: relative;
+}
+
+.message {
+  position: absolute;
+  width: 100%;
+  font-size: 2em;
+  text-align: center;
+  opacity: 0;
+}
+
+.message:nth-child(1) {
+  top: 10%;
+}
+.message:nth-child(2) {
+  top: 30%;
+}
+.message:nth-child(3) {
+  top: 50%;
+}
+
+.placeholder {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  font-size: 2em;
+}
