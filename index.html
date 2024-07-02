@@ -135,31 +135,40 @@
     <canvas id="verdictChart" class="chart  mx-auto"></canvas>
     <br>
     <h4>Ditribution of verdicts in top comments 2019-2023</h4>
-
+    <div class="tags is-centered">
+        <span class="tag is-success" style="transform: rotate(10deg); margin-top: 1px">NTA</span>
+        <span class="tag is-danger" style="transform: rotate(-1deg); margin-top: 2px">YTA</span>
+        <span class="tag is-warning" style="transform: rotate(2deg); margin-top: -10px">ESH</span>
+        <span class="tag is-info" style="transform: rotate(-2deg); margin-top: -2px">NAH</span></div>
   </section>
 
 
   <section class="section is-medium has-text-centered">
-    <h1 class="title">Seems like people are grumpy in November</h1>
+    <h1 class="title">Seems like people</h1>
     
     
     <div class="columns">
         <div class="column">
+            <h3 class="subtitle">are grumpy in November</h3>
     <canvas id="verdictChart2" class="chart"></canvas>
     <br>
     <h4>Ditribution of verdicts in top comments 2019-2023</h4>
     </div>
 
-<div class="column"><canvas id="verdictHourlyChart" class="chart"></canvas>
+<div class="column">
+    <h3 class="subtitle">don't really care about the hour</h3>
+
+    
+    <canvas id="verdictHourlyChart" class="chart"></canvas>
     <br>
     <h4>Ditribution of verdicts in top comments 2019-2023</h4></div>
 </div>
-
-  </section>
-  <section class="section is-medium has-text-centered">
-    <h1 class="title">Seems like people are grumpy in November</h1>
+<div class="tags is-centered">
+    <span class="tag is-success" style="transform: rotate(-8deg); margin-top: 1px">NTA</span>
+    <span class="tag is-danger" style="transform: rotate(1deg); margin-top: 2px">YTA</span>
+    <span class="tag is-warning" style="transform: rotate(2deg); margin-top: -1px">ESH</span>
+    <span class="tag is-info" style="transform: rotate(-4deg); margin-top: 4px">NAH</span></div>
     
-
   </section>
   <!-- JavaScript for Chart.js -->
   <script>
@@ -203,7 +212,7 @@
         responsive: true,
         plugins: {
           legend: {
-            display: true,
+            display: false,
             position: 'top',
           },
           tooltip: {
@@ -284,7 +293,7 @@
       responsive: true,
       plugins: {
         legend: {
-          display: true,
+          display: false,
           position: 'top',
         },
         tooltip: {
@@ -378,7 +387,7 @@ new Chart(ctx3, {
     responsive: true,
     plugins: {
       legend: {
-        display: true,
+        display: false,
         position: 'top',
       },
       tooltip: {
