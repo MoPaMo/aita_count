@@ -1,88 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Who's The Asshole?</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <style>
-      #tagcontainer .tag {
-        position: absolute;
-        transform-origin: bottom center;
-        z-index: -1;
-      }
-      #tagcontainer .tag:nth-child(2) {
-        transform: translate(-50%, -50%) rotate(60deg) translate(0, -200px);
-      }
-      #tagcontainer .tag:nth-child(3) {
-        transform: translate(-50%, -50%) rotate(22.5deg) translate(0, -200px);
-      }
-      #tagcontainer .tag:nth-child(4) {
-        transform: translate(-50%, -50%) rotate(-22.5deg) translate(0, -200px);
-      }
-      #tagcontainer .tag:nth-child(1) {
-        transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
-      }
+        #tagcontainer .tag {
+            position: absolute;
+            transform-origin: bottom center;
+            z-index: -1;
+        }
 
-  #verdictChart {
-    width: 70% !important;  /* Adjust the percentage as needed */
-    max-width: 600px;       /* Set a maximum width */
-    max-height: 400px;         /* Adjust the height as needed */
-  }
+        #tagcontainer .tag:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(60deg) translate(0, -200px);
+        }
 
+        #tagcontainer .tag:nth-child(3) {
+            transform: translate(-50%, -50%) rotate(22.5deg) translate(0, -200px);
+        }
+
+        #tagcontainer .tag:nth-child(4) {
+            transform: translate(-50%, -50%) rotate(-22.5deg) translate(0, -200px);
+        }
+
+        #tagcontainer .tag:nth-child(1) {
+            transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
+        }
+
+        #verdictChart {
+            width: 70% !important;
+            /* Adjust the percentage as needed */
+            max-width: 600px;
+            /* Set a maximum width */
+            max-height: 400px;
+            /* Adjust the height as needed */
+        }
     </style>
-  </head>
-  <body>
+</head>
+
+<body>
     <section class="hero is-fullheight">
-      <div class="hero-body">
-        <div class="container has-text-centered">
-          <p class="title is-size-1">Who's The Asshole?</p>
-          <br />
-          <p class="subtitle">
-            on
-            <a
-              class="has-text-black"
-              href="https://www.reddit.com/r/amitheasshole/"
-              target="_blank"
-              >r/amitheasshole</a
-            >
-          </p>
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <p class="title is-size-1">Who's The Asshole?</p>
+                <br />
+                <p class="subtitle">
+                    on
+                    <a class="has-text-black" href="https://www.reddit.com/r/amitheasshole/"
+                        target="_blank">r/amitheasshole</a>
+                </p>
+            </div>
         </div>
-      </div>
     </section>
-<div id="tagcontainer">
-    <div class="tag is-success is-large" style="top: 50%; left: 50%">NTA</div>
-    <div class="tag is-danger is-large" style="top: 50%; left: 50%">YTA</div>
-    <div class="tag is-warning is-large" style="top: 50%; left: 50%">ESH</div>
-    <div class="tag is-info is-large" style="top: 50%; left: 50%">NAH</div>
-</div>
+    <div id="tagcontainer">
+        <div class="tag is-success is-large" style="top: 50%; left: 50%">NTA</div>
+        <div class="tag is-danger is-large" style="top: 50%; left: 50%">YTA</div>
+        <div class="tag is-warning is-large" style="top: 50%; left: 50%">ESH</div>
+        <div class="tag is-info is-large" style="top: 50%; left: 50%">NAH</div>
+    </div>
     <section class="section is-medium has-text-centered has-background-info has-text-white">
-      <h1 class="title has-text-white">We crunched the numbers</h1>
-      <h2 class="subtitle">
-        <nav class="level">
-          <div class="level-item has-text-centered"></div>
-          <div class="level-item has-text-centered has-text-white">
-            <div>
-              <p class="heading has-text-white">Posts</p>
-              <p class="title is-size-1 has-text-white">998</p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered has-text-white">←from <br />out of→</div>
-          <div class="level-item has-text-centered">
-            <div>
-              <p class="heading has-text-white">Years</p>
-              <p class="title is-size-1 has-text-white">5</p>
-            </div>
-          </div>
-          <div class="level-item has-text-centered"></div>
-        </nav>
-      </h2>
-    </section><section class="section is-medium has-text-centered">
+        <h1 class="title has-text-white">We crunched the numbers</h1>
+        <h2 class="subtitle">
+            <nav class="level">
+                <div class="level-item has-text-centered"></div>
+                <div class="level-item has-text-centered has-text-white">
+                    <div>
+                        <p class="heading has-text-white">Posts</p>
+                        <p class="title is-size-1 has-text-white">998</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered has-text-white">←from <br />out of→</div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading has-text-white">Years</p>
+                        <p class="title is-size-1 has-text-white">5</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered"></div>
+            </nav>
+        </h2>
+    </section>
+    <section class="section is-medium has-text-centered">
         <h1 class="title">Here's what we found</h1>
         <br>
         <br>
@@ -94,337 +96,351 @@
         <br>
 
         <h2 class="subtitle">
-          <nav class="level">
-            <!--NTA    0.896970
+            <nav class="level">
+                <!--NTA    0.896970
             YTA    0.055556
             ESH    0.027273
             NAH    0.020202-->
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading"><div class="tag is-success is-large has-text-white" style="transform: rotate(-6deg); ">NTA</div></p>
-                <p class="title is-size-1 has-text-success">89.6%</p>
-              </div>
-            </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading"><div class="tag is-danger is-large has-text-white" style="transform: rotate(2deg);">YTA</div></p>
-                <p class="title is-size-1 has-text-danger">5.6%</p>
-              </div>
-            </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading"><div class="tag is-warning is-large has-text-white" style="transform: rotate(-10deg);">ESH</div></p>
-                <p class="title is-size-1 has-text-warning">2.7%</p>
-              </div>
-            </div>
-            <div class="level-item has-text-centered">
-              <div>
-                <p class="heading"><div class="tag is-info is-large has-text-white" style="transform: rotate(10deg);">NAH</div></p>
-                <p class="title is-size-1 has-text-info">2.0%</p>
-              </div>
-            </div>
-          </nav>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">
+                        <div class="tag is-success is-large has-text-white" style="transform: rotate(-6deg); ">NTA</div>
+                        </p>
+                        <p class="title is-size-1 has-text-success">89.6%</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">
+                        <div class="tag is-danger is-large has-text-white" style="transform: rotate(2deg);">YTA</div>
+                        </p>
+                        <p class="title is-size-1 has-text-danger">5.6%</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">
+                        <div class="tag is-warning is-large has-text-white" style="transform: rotate(-10deg);">ESH</div>
+                        </p>
+                        <p class="title is-size-1 has-text-warning">2.7%</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading">
+                        <div class="tag is-info is-large has-text-white" style="transform: rotate(10deg);">NAH</div>
+                        </p>
+                        <p class="title is-size-1 has-text-info">2.0%</p>
+                    </div>
+                </div>
+            </nav>
         </h2>
         <h4>Ditribution of verdicts in top comments from the last 5 years</h4>
         <h4></h4>
-      </section>
+    </section>
 
 
-  <section class="section is-medium has-text-centered">
-    <h1 class="title">2. Things have changed</h1>
-    <canvas id="verdictChart" class="chart  mx-auto"></canvas>
-    <br>
-    <h4>Ditribution of verdicts in top comments 2019-2023</h4>
-    <div class="tags is-centered">
-        <span class="tag is-success" style="transform: rotate(10deg); margin-top: 1px">NTA</span>
-        <span class="tag is-danger" style="transform: rotate(-1deg); margin-top: 2px">YTA</span>
-        <span class="tag is-warning" style="transform: rotate(2deg); margin-top: -10px">ESH</span>
-        <span class="tag is-info" style="transform: rotate(-2deg); margin-top: -2px">NAH</span></div>
-  </section>
+    <section class="section is-medium has-text-centered">
+        <h1 class="title">2. Things have changed</h1>
+        <canvas id="verdictChart" class="chart  mx-auto"></canvas>
+        <br>
+        <h4>Ditribution of verdicts in top comments 2019-2023</h4>
+        <div class="tags is-centered">
+            <span class="tag is-success" style="transform: rotate(10deg); margin-top: 1px">NTA</span>
+            <span class="tag is-danger" style="transform: rotate(-1deg); margin-top: 2px">YTA</span>
+            <span class="tag is-warning" style="transform: rotate(2deg); margin-top: -10px">ESH</span>
+            <span class="tag is-info" style="transform: rotate(-2deg); margin-top: -2px">NAH</span>
+        </div>
+    </section>
 
 
-  <section class="section is-medium has-text-centered">
-    <h1 class="title">Seems like people</h1>
-    
-    
-    <div class="columns">
-        <div class="column">
-            <h3 class="subtitle">are grumpy in November</h3>
-    <canvas id="verdictChart2" class="chart"></canvas>
-    <br>
-    <h4>Ditribution of verdicts in top comments per month</h4>
-    </div>
+    <section class="section is-medium has-text-centered">
+        <h1 class="title">Seems like people</h1>
 
-<div class="column">
-    <h3 class="subtitle">don't really care about the hour</h3>
 
-    
-    <canvas id="verdictHourlyChart" class="chart"></canvas>
-    <br>
-    <h4>Ditribution of verdicts in top comments per hour</h4></div>
-</div>
-<div class="tags is-centered">
-    <span class="tag is-success" style="transform: rotate(-8deg); margin-top: 1px">NTA</span>
-    <span class="tag is-danger" style="transform: rotate(1deg); margin-top: 2px">YTA</span>
-    <span class="tag is-warning" style="transform: rotate(2deg); margin-top: -1px">ESH</span>
-    <span class="tag is-info" style="transform: rotate(-4deg); margin-top: 4px">NAH</span></div>
-    
-  </section>
-  <!-- JavaScript for Chart.js -->
-  <script>
-    const ctx = document.getElementById('verdictChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['2019', '2020', '2021', '2022', '2023'],
-        datasets: [
-          {
-            label: 'NTA',
-            data: [0.651934, 0.920128, 0.963415, 0.982684, 0.958333],
-            backgroundColor: 'hsl(141, 71%, 48%)',
-            borderColor: 'hsl(141, 53%, 31%)',
-            borderWidth: 1,
-          },
-          {
-            label: 'YTA',
-            data: [0.182320, 0.038339, 0.018293, 0.012987, 0.041667],
-            backgroundColor: 'hsl(348, 100%, 61%)',
-            borderColor: 'hsl(348, 86%, 43%)',
-            borderWidth: 1,
-          },
-          {
-            label: 'ESH',
-            data: [0.082873, 0.028754, 0.012195, 0.004329, 0.000000],
-            backgroundColor: 'hsl(48, 100%, 67%)',
-            borderColor: 'hsl(48, 100%, 29%)',
-            borderWidth: 1,
-          },
-          {
-            label: 'NAH',
-            data: [0.082873, 0.012780, 0.006098, 0.000000, 0.000000],
-            backgroundColor: 'hsl(204, 86%, 53%)',
-            borderColor: 'hsl(204, 71%, 39%)',
-            borderWidth: 1,
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          legend: {
-            display: false,
-            position: 'top',
-          },
-          tooltip: {
-            callbacks: {
-              label: function(context) {
-                let label = context.dataset.label || '';
-                if (label) {
-                  label += ': ';
+        <div class="columns">
+            <div class="column">
+                <h3 class="subtitle">are grumpy in November</h3>
+                <canvas id="verdictChart2" class="chart"></canvas>
+                <br>
+                <h4>Ditribution of verdicts in top comments per month</h4>
+            </div>
+
+            <div class="column">
+                <h3 class="subtitle">don't really care about the hour</h3>
+
+
+                <canvas id="verdictHourlyChart" class="chart"></canvas>
+                <br>
+                <h4>Ditribution of verdicts in top comments per hour</h4>
+            </div>
+        </div>
+        <div class="tags is-centered">
+            <span class="tag is-success" style="transform: rotate(-8deg); margin-top: 1px">NTA</span>
+            <span class="tag is-danger" style="transform: rotate(1deg); margin-top: 2px">YTA</span>
+            <span class="tag is-warning" style="transform: rotate(2deg); margin-top: -1px">ESH</span>
+            <span class="tag is-info" style="transform: rotate(-4deg); margin-top: 4px">NAH</span>
+        </div>
+
+    </section>
+    <!-- JavaScript for Chart.js -->
+    <script>
+        const ctx = document.getElementById('verdictChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['2019', '2020', '2021', '2022', '2023'],
+                datasets: [
+                    {
+                        label: 'NTA',
+                        data: [0.651934, 0.920128, 0.963415, 0.982684, 0.958333],
+                        backgroundColor: 'hsl(141, 71%, 48%)',
+                        borderColor: 'hsl(141, 53%, 31%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'YTA',
+                        data: [0.182320, 0.038339, 0.018293, 0.012987, 0.041667],
+                        backgroundColor: 'hsl(348, 100%, 61%)',
+                        borderColor: 'hsl(348, 86%, 43%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'ESH',
+                        data: [0.082873, 0.028754, 0.012195, 0.004329, 0.000000],
+                        backgroundColor: 'hsl(48, 100%, 67%)',
+                        borderColor: 'hsl(48, 100%, 29%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'NAH',
+                        data: [0.082873, 0.012780, 0.006098, 0.000000, 0.000000],
+                        backgroundColor: 'hsl(204, 86%, 53%)',
+                        borderColor: 'hsl(204, 71%, 39%)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += (context.parsed.y * 100).toFixed(1) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false,
+                        stacked: true,
+                    },
+                    y: {
+                        display: false,
+                        stacked: true,
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return value * 100 + '%';
+                            }
+                        }
+                    }
                 }
-                if (context.parsed.y !== null) {
-                  label += (context.parsed.y * 100).toFixed(1) + '%';
+            }, elements: {
+                // to make background transparent
+                backgroundColor: 'transparent'
+            },
+        });
+
+
+        const ctx2 = document.getElementById('verdictChart2').getContext('2d');
+        new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
+                datasets: [
+                    {
+                        label: 'NTA',
+                        data: [0.905405, 0.936170, 0.928571, 0.964286, 0.922222, 0.905263, 0.860294, 0.905983, 0.893617, 0.819672, 0.868852, 0.887640],
+                        backgroundColor: 'hsl(141, 71%, 48%)',
+                        borderColor: 'hsl(141, 53%, 31%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'YTA',
+                        data: [0.067568, 0.042553, 0.028571, 0.035714, 0.044444, 0.063158, 0.088235, 0.042735, 0.063830, 0.049180, 0.065574, 0.044944],
+                        backgroundColor: 'hsl(348, 100%, 61%)',
+                        borderColor: 'hsl(348, 86%, 43%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'ESH',
+                        data: [0.013514, 0.021277, 0.014286, 0.000000, 0.033333, 0.010526, 0.044118, 0.017094, 0.010638, 0.081967, 0.032787, 0.044944],
+                        backgroundColor: 'hsl(48, 100%, 67%)',
+                        borderColor: 'hsl(48, 100%, 29%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'NAH',
+                        data: [0.013514, 0.021277, 0.028571, 0.000000, 0.000000, 0.021053, 0.007353, 0.034188, 0.031915, 0.049180, 0.032787, 0.022472],
+                        backgroundColor: 'hsl(204, 86%, 53%)',
+                        borderColor: 'hsl(204, 71%, 39%)',
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += (context.parsed.y * 100).toFixed(1) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false,
+                        stacked: true,
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    },
+                    y: {
+                        display: false,
+                        stacked: true,
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Percentage'
+                        },
+                        ticks: {
+                            callback: function (value) {
+                                return value * 100 + '%';
+                            }
+                        }
+                    }
                 }
-                return label;
-              }
-            }
-          }
-        },
-        scales: {
-          x: {
-            display:false,
-            stacked: true,
-          },
-          y: {
-            display:false,
-            stacked: true,
-            beginAtZero: true,
-            ticks: {
-              callback: function(value) {
-                return value * 100 + '%';
-              }
-            }
-          }
-        }
-      },elements: {
-      // to make background transparent
-      backgroundColor: 'transparent'
-    },
-    });
+            },
+            elements: {
+                // to make background transparent
+                backgroundColor: 'transparent'
+            },
+        });
 
 
-    const ctx2 = document.getElementById('verdictChart2').getContext('2d');
-  new Chart(ctx2, {
-    type: 'bar',
-    data: {
-      labels: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'],
-      datasets: [
-        {
-          label: 'NTA',
-          data: [0.905405, 0.936170, 0.928571, 0.964286, 0.922222, 0.905263, 0.860294, 0.905983, 0.893617, 0.819672, 0.868852, 0.887640],
-          backgroundColor: 'hsl(141, 71%, 48%)',
-          borderColor: 'hsl(141, 53%, 31%)',
-          borderWidth: 1,
-        },
-        {
-          label: 'YTA',
-          data: [0.067568, 0.042553, 0.028571, 0.035714, 0.044444, 0.063158, 0.088235, 0.042735, 0.063830, 0.049180, 0.065574, 0.044944],
-          backgroundColor: 'hsl(348, 100%, 61%)',
-          borderColor: 'hsl(348, 86%, 43%)',
-          borderWidth: 1,
-        },
-        {
-          label: 'ESH',
-          data: [0.013514, 0.021277, 0.014286, 0.000000, 0.033333, 0.010526, 0.044118, 0.017094, 0.010638, 0.081967, 0.032787, 0.044944],
-          backgroundColor: 'hsl(48, 100%, 67%)',
-          borderColor: 'hsl(48, 100%, 29%)',
-          borderWidth: 1,
-        },
-        {
-          label: 'NAH',
-          data: [0.013514, 0.021277, 0.028571, 0.000000, 0.000000, 0.021053, 0.007353, 0.034188, 0.031915, 0.049180, 0.032787, 0.022472],
-          backgroundColor: 'hsl(204, 86%, 53%)',
-          borderColor: 'hsl(204, 71%, 39%)',
-          borderWidth: 1,
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      plugins: {
-        legend: {
-          display: false,
-          position: 'top',
-        },
-        tooltip: {
-          callbacks: {
-            label: function(context) {
-              let label = context.dataset.label || '';
-              if (label) {
-                label += ': ';
-              }
-              if (context.parsed.y !== null) {
-                label += (context.parsed.y * 100).toFixed(1) + '%';
-              }
-              return label;
-            }
-          }
-        }
-      },
-      scales: {
-        x: {
-            display:false,
-          stacked: true,
-          title: {
-            display: true,
-            text: 'Month'
-          }
-        },
-        y: {
-            display:false,
-          stacked: true,
-          beginAtZero: true,
-          title: {
-            display: true,
-            text: 'Percentage'
-          },
-          ticks: {
-            callback: function(value) {
-              return value * 100 + '%';
-            }
-          }
-        }
-      }
-    },
-    elements: {
-      // to make background transparent
-      backgroundColor: 'transparent'
-    },
-  });
+        const ctx3 = document.getElementById('verdictHourlyChart').getContext('2d');
+        new Chart(ctx3, {
+            type: 'bar',
+            data: {
+                labels: [
+                    '00', '01', '02', '03', '04', '05', '06', '07', '08', '09',
+                    '10', '11', '12', '13', '14', '15', '16', '17', '18', '19',
+                    '20', '21', '22', '23'
+                ],
+                datasets: [
+                    {
+                        label: 'ESH',
+                        data: [0.100000, 0.000000, 0.058824, 0.000000, 0.000000, 0.000000, 0.000000, 0.047619, 0.000000, 0.047619, 0.029412, 0.016393, 0.023810, 0.013699, 0.038961, 0.055556, 0.014493, 0.023810, 0.000000, 0.035714, 0.000000, 0.025000, 0.055556, 0.062500],
+                        backgroundColor: 'hsl(48, 100%, 67%)',
+                        borderColor: 'hsl(48, 100%, 29%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'NAH',
+                        data: [0.000000, 0.071429, 0.000000, 0.000000, 0.000000, 0.000000, 0.055556, 0.047619, 0.000000, 0.000000, 0.000000, 0.032787, 0.035714, 0.054795, 0.051948, 0.000000, 0.000000, 0.011905, 0.000000, 0.035714, 0.000000, 0.000000, 0.000000, 0.031250],
+                        backgroundColor: 'hsl(204, 86%, 53%)',
+                        borderColor: 'hsl(204, 71%, 39%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'NTA',
+                        data: [0.750000, 0.857143, 0.941176, 1.000000, 0.933333, 0.941176, 0.888889, 0.809524, 1.000000, 0.904762, 0.882353, 0.885246, 0.869048, 0.876712, 0.844156, 0.888889, 0.956522, 0.892857, 0.947368, 0.910714, 0.897959, 0.925000, 0.925926, 0.906250],
+                        backgroundColor: 'hsl(141, 71%, 48%)',
+                        borderColor: 'hsl(141, 53%, 31%)',
+                        borderWidth: 1,
+                    },
+                    {
+                        label: 'YTA',
+                        data: [0.150000, 0.071429, 0.000000, 0.000000, 0.066667, 0.058824, 0.055556, 0.095238, 0.000000, 0.047619, 0.088235, 0.065574, 0.071429, 0.054795, 0.064935, 0.055556, 0.028986, 0.071429, 0.052632, 0.017857, 0.102041, 0.050000, 0.018519, 0.000000],
+                        backgroundColor: 'hsl(348, 100%, 61%)',
+                        borderColor: 'hsl(348, 86%, 43%)',
+                        borderWidth: 1,
+                    },
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false,
+                        position: 'top',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                let label = context.dataset.label || '';
+                                if (label) {
+                                    label += ': ';
+                                }
+                                if (context.parsed.y !== null) {
+                                    label += (context.parsed.y * 100).toFixed(1) + '%';
+                                }
+                                return label;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false,
+                        stacked: true,
+                    },
+                    y: {
+                        display: false,
+                        stacked: true,
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function (value) {
+                                return value * 100 + '%';
+                            }
+                        }
+                    }
+                }
+            },
+            elements: {
+                // to make background transparent
+                backgroundColor: 'transparent'
+            },
+        });
+    </script>
+</body>
 
-
-  const ctx3 = document.getElementById('verdictHourlyChart').getContext('2d');
-new Chart(ctx3, {
-  type: 'bar',
-  data: {
-    labels: [
-      '00', '01', '02', '03', '04', '05', '06', '07', '08', '09', 
-      '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', 
-      '20', '21', '22', '23'
-    ],
-    datasets: [
-      {
-        label: 'ESH',
-        data: [0.100000, 0.000000, 0.058824, 0.000000, 0.000000, 0.000000, 0.000000, 0.047619, 0.000000, 0.047619, 0.029412, 0.016393, 0.023810, 0.013699, 0.038961, 0.055556, 0.014493, 0.023810, 0.000000, 0.035714, 0.000000, 0.025000, 0.055556, 0.062500],
-        backgroundColor: 'hsl(48, 100%, 67%)',
-        borderColor: 'hsl(48, 100%, 29%)',
-        borderWidth: 1,
-      },
-      {
-        label: 'NAH',
-        data: [0.000000, 0.071429, 0.000000, 0.000000, 0.000000, 0.000000, 0.055556, 0.047619, 0.000000, 0.000000, 0.000000, 0.032787, 0.035714, 0.054795, 0.051948, 0.000000, 0.000000, 0.011905, 0.000000, 0.035714, 0.000000, 0.000000, 0.000000, 0.031250],
-        backgroundColor: 'hsl(204, 86%, 53%)',
-        borderColor: 'hsl(204, 71%, 39%)',
-        borderWidth: 1,
-      },
-      {
-        label: 'NTA',
-        data: [0.750000, 0.857143, 0.941176, 1.000000, 0.933333, 0.941176, 0.888889, 0.809524, 1.000000, 0.904762, 0.882353, 0.885246, 0.869048, 0.876712, 0.844156, 0.888889, 0.956522, 0.892857, 0.947368, 0.910714, 0.897959, 0.925000, 0.925926, 0.906250],
-        backgroundColor: 'hsl(141, 71%, 48%)',
-        borderColor: 'hsl(141, 53%, 31%)',
-        borderWidth: 1,
-      },
-      {
-        label: 'YTA',
-        data: [0.150000, 0.071429, 0.000000, 0.000000, 0.066667, 0.058824, 0.055556, 0.095238, 0.000000, 0.047619, 0.088235, 0.065574, 0.071429, 0.054795, 0.064935, 0.055556, 0.028986, 0.071429, 0.052632, 0.017857, 0.102041, 0.050000, 0.018519, 0.000000],
-        backgroundColor: 'hsl(348, 100%, 61%)',
-        borderColor: 'hsl(348, 86%, 43%)',
-        borderWidth: 1,
-      },
-    ]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: {
-        display: false,
-        position: 'top',
-      },
-      tooltip: {
-        callbacks: {
-          label: function(context) {
-            let label = context.dataset.label || '';
-            if (label) {
-              label += ': ';
-            }
-            if (context.parsed.y !== null) {
-              label += (context.parsed.y * 100).toFixed(1) + '%';
-            }
-            return label;
-          }
-        }
-      }
-    },
-    scales: {
-      x: {display:false,
-        stacked: true,
-      },
-      y: {display:false,
-        stacked: true,
-        beginAtZero: true,
-        ticks: {
-          callback: function(value) {
-            return value * 100 + '%';
-          }
-        }
-      }
-    }
-  },
-  elements: {
-    // to make background transparent
-    backgroundColor: 'transparent'
-  },
-});
-  </script>
-  </body>
 </html>
