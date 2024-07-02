@@ -9,21 +9,21 @@
       href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css"
     />
     <style>
-      .tag {
+      #tagcontainer .tag {
         position: absolute;
         transform-origin: bottom center;
         z-index: -1;
       }
-      .tag:nth-child(2) {
+      #tagcontainer .tag:nth-child(2) {
         transform: translate(-50%, -50%) rotate(60deg) translate(0, -200px);
       }
-      .tag:nth-child(3) {
+      #tagcontainer .tag:nth-child(3) {
         transform: translate(-50%, -50%) rotate(22.5deg) translate(0, -200px);
       }
-      .tag:nth-child(4) {
+      #tagcontainer .tag:nth-child(4) {
         transform: translate(-50%, -50%) rotate(-22.5deg) translate(0, -200px);
       }
-      .tag:nth-child(5) {
+      #tagcontainer .tag:nth-child(1) {
         transform: translate(-50%, -50%) rotate(-60deg) translate(0, -200px);
       }
     </style>
@@ -46,33 +46,78 @@
         </div>
       </div>
     </section>
-
+<div id="tagcontainer">
     <div class="tag is-success is-large" style="top: 50%; left: 50%">NTA</div>
     <div class="tag is-danger is-large" style="top: 50%; left: 50%">YTA</div>
     <div class="tag is-warning is-large" style="top: 50%; left: 50%">ESH</div>
     <div class="tag is-info is-large" style="top: 50%; left: 50%">NAH</div>
-
-    <section class="section is-medium has-text-centered">
-      <h1 class="title">We crunched the numbers</h1>
+</div>
+    <section class="section is-medium has-text-centered has-background-info has-text-white">
+      <h1 class="title has-text-white">We crunched the numbers</h1>
       <h2 class="subtitle">
         <nav class="level">
           <div class="level-item has-text-centered"></div>
-          <div class="level-item has-text-centered">
+          <div class="level-item has-text-centered has-text-white">
             <div>
-              <p class="heading">Posts</p>
-              <p class="title is-size-1">998</p>
+              <p class="heading has-text-white">Posts</p>
+              <p class="title is-size-1 has-text-white">998</p>
             </div>
           </div>
-          <div class="level-item has-text-centered">←from <br />out of→</div>
+          <div class="level-item has-text-centered has-text-white">←from <br />out of→</div>
           <div class="level-item has-text-centered">
             <div>
-              <p class="heading">Years</p>
-              <p class="title is-size-1">5</p>
+              <p class="heading has-text-white">Years</p>
+              <p class="title is-size-1 has-text-white">5</p>
             </div>
           </div>
           <div class="level-item has-text-centered"></div>
         </nav>
       </h2>
-    </section>
+    </section><section class="section is-medium has-text-centered">
+        <h1 class="title">Here's what we found</h1>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="title has-text-weight-bold">1. It's probably not you.</h1>
+        <br>
+        <br>
+        <br>
+
+        <h2 class="subtitle">
+          <nav class="level">
+            <!--NTA    0.896970
+            YTA    0.055556
+            ESH    0.027273
+            NAH    0.020202-->
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading"><div class="tag is-success is-large has-text-white">NTA</div></p>
+                <p class="title is-size-1 has-text-success">89.6%</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading"><div class="tag is-danger is-large has-text-white">YTA</div></p>
+                <p class="title is-size-1 has-text-danger">5.6%</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading"><div class="tag is-warning is-large has-text-white">ESH</div></p>
+                <p class="title is-size-1 has-text-warning">2.7%</p>
+              </div>
+            </div>
+            <div class="level-item has-text-centered">
+              <div>
+                <p class="heading"><div class="tag is-info is-large has-text-white">NAH</div></p>
+                <p class="title is-size-1 has-text-info">2.0%</p>
+              </div>
+            </div>
+          </nav>
+        </h2>
+        <h4>Ditribution of verdicts in top votes from the last 5 years</h4>
+        <h4></h4>
+      </section>
   </body>
 </html>
