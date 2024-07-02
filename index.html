@@ -12,6 +12,7 @@
       .tag {
         position: absolute;
         transform-origin: bottom center;
+        z-index: -1;
       }
       .tag:nth-child(2) {
         transform: translate(-50%, -50%) rotate(60deg) translate(0, -200px);
@@ -51,8 +52,27 @@
     <div class="tag is-warning is-large" style="top: 50%; left: 50%">ESH</div>
     <div class="tag is-info is-large" style="top: 50%; left: 50%">NAH</div>
 
-    <section class="placeholder">
-      <h2>Placeholder</h2>
+    <section class="section is-medium has-text-centered">
+      <h1 class="title">We crunched the numbers</h1>
+      <h2 class="subtitle">
+        <nav class="level">
+          <div class="level-item has-text-centered"></div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Posts</p>
+              <p class="title is-size-1">998</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered">←from <br />out of→</div>
+          <div class="level-item has-text-centered">
+            <div>
+              <p class="heading">Years</p>
+              <p class="title is-size-1">5</p>
+            </div>
+          </div>
+          <div class="level-item has-text-centered"></div>
+        </nav>
+      </h2>
     </section>
   </body>
 </html>
