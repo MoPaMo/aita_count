@@ -1,9 +1,13 @@
-# Reddit AITA Historical Analysis Bot
+# Who’s the asshole? (on r/amitheasshole)
 
-AITA Analyzer is an application designed to gather and analyze data from the subreddit r/AmItheAsshole. 
+Who really votes what on r/amitheasshole? I analyzed one thousand posts on Reddit to find out how objective the votes really are…
+<https://whostheasshole.glitch.me/>
+
+### Website
+On https://whostheasshole.glitch.me/, the data is presented visually appealing (I hope haha).
 
 ### Method
-The app gahters the 1k top posts (either from all time or the last year).
+The app gathers the 1k top posts (either from all time or the last year).
 It then extracts the top comment from each post and looks for either NTA, YTA<, ESH or NA. If it doesn't find one of these flags in the top comment, it scans the next top comment in the post. 
 
 ### Limitations
