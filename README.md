@@ -1,15 +1,18 @@
-# Who’s the asshole? (on r/amitheasshole)
+# Who’s the Asshole? (on r/AmItheAsshole)
 
-Who really votes what on r/amitheasshole? I analyzed one thousand posts on Reddit to find out how objective the votes really are…
-<https://whostheasshole.glitch.me/>
+Ever wondered who really gets voted what on r/AmItheAsshole? I analyzed a thousand posts on Reddit to uncover how objective the votes truly are...
+Check it out here: <https://whostheasshole.glitch.me/>
 
 ### Website
-On https://whostheasshole.glitch.me/, the data is presented visually appealing (I hope haha).
+Head over to https://whostheasshole.glitch.me/ to see the data presented in a visually appealing way (at least, I hope you’ll find it appealing)!
 
 ### Method
-The app gathers the 1k top posts (either from all time or the last year).
-It then extracts the top comment from each post and looks for either NTA, YTA<, ESH or NA. If it doesn't find one of these flags in the top comment, it scans the next top comment in the post. 
+My app collects the top 1,000 posts (either from all time or just the last year).
+It then looks at the top comment for each post, searching for one of these verdicts: NTA, YTA, ESH, or NAH. If it doesn’t spot one of these in the top comment, it moves on to the next highest-rated comment in the post.
 
 ### Limitations
-This means that the data in this website may not be 100% accurate, as it only considers 1. the top comment in each post and 2. the highest ranking posts.
-It is not possible to gather more data, as Reddit imposes restrictions that allow you to only collect up to 1000 posts at once.
+It’s worth noting that the data on this website might not be 100% spot-on. Here’s why:
+1. It only considers the top comment(s) for each post.
+2. It only looks at the highest-ranking posts.
+
+Unfortunately, gathering more data isn’t possible due to Reddit’s restrictions – they only allow you to collect up to 1,000 posts at a time.​​​​​​​​​​​​​​​​
